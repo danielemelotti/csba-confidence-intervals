@@ -34,11 +34,13 @@ sd(rnorm_std)
 This is the case indeed. **What shape of the standardized distribution do we expect in comparison to that of the non standardized data?** The shape of the distribution of rnorm_std should be bell-shaped, as for a normal distribution. That’s because _the standardization process does not transform the structure of underlying distribution_ (hence, it does not influence the shape of the distribution); standardization only turns raw data into z-scores (it changes the scale of data), therefore, if the non-standardized distribution is normal (bell-shaped), its standardized version will also be normal. Similarly, a non-normally shaped distribution will remain non-normally shaped after standardization. Let’s confirm this:
 ```{r}
 par(mfrow = c(1, 2))
-plot(density(rnorm_raw), lwd = 2, main = "Non Standardized Distribution", col = "tomato")
-plot(density(rnorm_std), lwd = 2, main = "Standardized Distribution", col = "cornflowerblue")
+plot(density(rnorm_raw), lwd = 2, main = "Non Standardized Distribution",
+     col = "tomato")
+plot(density(rnorm_std), lwd = 2, main = "Standardized Distribution",
+     col = "cornflowerblue")
 ```
 
-Indeed, the shape of both distributions is identical and roughly bell-shaped.
+Indeed, the shape of both distributions is identical and roughly bell-shaped. Standardization plays a crucial role in statistics, especially in the context of confidence intervals; in fact, it helps compute confidence intervals correctly by removing scale-based biases.
 
 # 2. Confidence Intervals Simulation
 
@@ -60,7 +62,7 @@ We are going to generate 100 samples from a normally distributed population of 1
 set.seed(200)
 
 plot_sample_ci(num_samples = 100, sample_size = 100, pop_size = 10000,
-distr_func = rnorm, mean = 20, sd = 3)
+               distr_func = rnorm, mean = 20, sd = 3)
 ```
 
 As we can see, 5 samples out of a 100 do not include the true mean within a 95% CI, while there is only 1 sample that does not include the mean within a 99% CI. Keep in mind that the results will be affected if the seed is changed.
@@ -73,7 +75,7 @@ We are going to rerun the previous simulation, with the only difference of incre
 set.seed(200)
 
 plot_sample_ci(num_samples = 100, sample_size = 300, pop_size = 10000,
-distr_func = rnorm, mean = 20, sd = 3)
+               distr_func = rnorm, mean = 20, sd = 3)
 ```
 
 Overall, the intervals are in fact narrower than in the first scenario we analyzed. Here, we only meet 2 samples that do not include the true mean within 95% CI, with no sample not including the true mean within 99% CI.
@@ -90,10 +92,10 @@ set.seed(180)
 # First scenario (sample size = 100)
 par(mfrow = c(1, 2))
 plot_sample_ci(num_samples = 100, sample_size = 100, pop_size = 10000,
-distr_func = runif)
+               distr_func = runif)
 title("Uniform distribution")
 plot_sample_ci(num_samples = 100, sample_size = 100, pop_size = 10000,
-distr_func = rnorm)
+               distr_func = rnorm)
 title("Normal distribution")
 ```
 
@@ -104,10 +106,10 @@ set.seed(180)
 # Second scenario (sample size = 300)
 par(mfrow = c(1, 2))
 plot_sample_ci(num_samples = 100, sample_size = 300, pop_size = 10000,
-distr_func = runif)
+               distr_func = runif)
 title("Uniform distribution")
 plot_sample_ci(num_samples = 100, sample_size = 300, pop_size = 10000,
-distr_func = rnorm)
+               distr_func = rnorm)
 title("Normal distribution")
 ```
 
