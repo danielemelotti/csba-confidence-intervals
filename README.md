@@ -13,9 +13,9 @@ We use a synthetic dataset in this project.
 ## 2. Confidence Intervals Simulation
 * Display confidence intervals of a 100 samples (each of size 100), generated from a normally distributed population of 10,000.
 * Rerun the previous simulation with the same number of samples, but increase the sample size to 300. Visualize the confidence intervals.
-*
 
-## 3.
-
+## 3. Confidence Intervals and Uniform Distributions
+* Display confidence intervals as in the first two scenarios, but generate the data from a uniform distribution.
+* Compare results with first two scenarios.
 
 See the end of the markdown file for a summary. Feel free to knit the file and generate a report. Thank you!
