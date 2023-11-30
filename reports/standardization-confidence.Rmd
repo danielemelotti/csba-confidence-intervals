@@ -1,0 +1,45 @@
+---
+title: "Computational Statistics in Business Analytics - Confidence Intervals"
+author: "Daniele Melotti"
+date: "Nov 2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Data Standardization and Exploration
+
+## Standardize a synthetic dataset
+
+Data standardization is essentially the process of rescaling data so that it has a mean of 0 and a standard deviation of 1. This process is particularly helpful in guaranteeing data consistency, allowing for comparisons between variables that are measured with different scales.
+To execute data standardization, we need to subtract the mean of a vector from all its values, and divide this difference by the standard deviation to get a vector of standardized values. We demonstrate this on a synthetic dataset, which we create following a normal distribution with mean of 940 and standard deviation of 190.
+```{r}
+# Setting seed
+set.seed(194)
+
+rnorm_raw <- rnorm(n = 100, mean = 940, sd = 190) # non-standardized data
+rnorm_std <- (rnorm_raw - mean(rnorm_raw))/sd(rnorm_raw) # standardized data
+```
+
+## Analyze the standardized data
+
+We shall make sure that the mean and standard deviation of the standardized dataset are 0 and 1 respectively:
+```{r}
+mean(rnorm_std)
+sd(rnorm_std)
+```
+
+This is the case indeed. **What shape of the standardized distribution do we expect in comparison to that of the non standardized data?** The shape of the distribution of rnorm_std should be bell-shaped, as for a normal distribution. That’s because _the standardization process does not transform the underlying distribution structure of the data_ (hence, it does not influence the shape of the distribution); standardization only turns raw data into z-scores (it changes the scale of data), therefore, if the non-standardized distribution is normal (bell-shaped), its standardized version will also be normal. Similarly, a non-normally shaped distribution will remain non-normally shaped after standardization. Let’s confirm this:
+```{r}
+par(mfrow = c(1, 2))
+plot(density(rnorm_raw), lwd = 2, main = "Non Standardized Distribution", col = "tomato")
+plot(density(rnorm_std), lwd = 2, main = "Standardized Distribution", col = "cornflowerblue")
+```
+
+Indeed, the shape of both distributions is identical and roughly bell-shaped.
+
+# 2. Confidence Intervals Simulation
+
+
