@@ -31,7 +31,7 @@ mean(rnorm_std)
 sd(rnorm_std)
 ```
 
-This is the case indeed. **What shape of the standardized distribution do we expect in comparison to that of the non standardized data?** The shape of the distribution of rnorm_std should be bell-shaped, as for a normal distribution. That’s because _the standardization process does not transform the underlying distribution structure of the data_ (hence, it does not influence the shape of the distribution); standardization only turns raw data into z-scores (it changes the scale of data), therefore, if the non-standardized distribution is normal (bell-shaped), its standardized version will also be normal. Similarly, a non-normally shaped distribution will remain non-normally shaped after standardization. Let’s confirm this:
+This is the case indeed. **What shape of the standardized distribution do we expect in comparison to that of the non standardized data?** The shape of the distribution of rnorm_std should be bell-shaped, as for a normal distribution. That’s because _the standardization process does not transform the structure of underlying distribution_ (hence, it does not influence the shape of the distribution); standardization only turns raw data into z-scores (it changes the scale of data), therefore, if the non-standardized distribution is normal (bell-shaped), its standardized version will also be normal. Similarly, a non-normally shaped distribution will remain non-normally shaped after standardization. Let’s confirm this:
 ```{r}
 par(mfrow = c(1, 2))
 plot(density(rnorm_raw), lwd = 2, main = "Non Standardized Distribution", col = "tomato")
@@ -52,9 +52,9 @@ require(devtools) # loading devtools for installing non-CRAN packages
 require(compstatslib) #loading compstatslib
 ```
 
-# 2. Display confidence intervals of a 100 samples (each of size 100), generated from a normally distributed population of 10,000
+## Display confidence intervals of a 100 samples (each of size 100), generated from a normally distributed population of 10,000
 
-We are going to generate 100 samples from a normally distributed population of 10,000. We arbitrarily choose to set the mean to 20 and the standard deviation to 3. Given such a scenario, we expect on average 5% of the samples to not include the true value of the mean when we consider a 95% CI (5 samples out of 100), while 1% of the samples should not include the true mean when considering a 99% CI (1 sample out of 100).
+We are going to generate 100 samples from a normally distributed population of 10,000. We arbitrarily choose to set the mean to 20 and the standard deviation to 3. We expect on average 5% of the samples to not include the true value of the mean when we consider a 95% CI (5 samples out of 100), while 1% of the samples should not include the true mean when considering a 99% CI (1 sample out of 100).
 ```{r}
 # Setting seed
 set.seed(200)
@@ -101,7 +101,7 @@ title("Normal distribution")
 # Setting seed
 set.seed(180)
 
-# Second scenario (sample size = 30)
+# Second scenario (sample size = 300)
 par(mfrow = c(1, 2))
 plot_sample_ci(num_samples = 100, sample_size = 300, pop_size = 10000,
 distr_func = runif)
@@ -115,3 +115,5 @@ As we can see from the plots above (check x-axis values), it is indeed true that
 
 # Summary
 
+In this project, we briefly dived into the topics of data standardization and confidence intervals. We began by standardizing a synthetic dataset generated from a normal distribution, outlining the benefits of data standardization. Also, we learned that when standardizing data, the underlying distribution remains unchanged.
+Next, we proceeded to generate several samples from a normal distribution, verifying the properties of confidence intervals. We noticed that when we increase sample size, the confidence intervals become narrower, and that when we sample from a uniformly distributed population, the confidence intervals tend to be wider than those of samples generated from a normal distribution.
