@@ -52,7 +52,7 @@ require(devtools) # loading devtools for installing non-CRAN packages
 require(compstatslib) #loading compstatslib
 ```
 
-# 2. Display confidence intervals of a 100 samples (each of size 100), generated from a normally distributed population of 10,000.
+# 2. Display confidence intervals of a 100 samples (each of size 100), generated from a normally distributed population of 10,000
 
 We are going to generate 100 samples from a normally distributed population of 10,000. We arbitrarily choose to set the mean to 20 and the standard deviation to 3. Given such a scenario, we expect on average 5% of the samples to not include the true value of the mean when we consider a 95% CI (5 samples out of 100), while 1% of the samples should not include the true mean when considering a 99% CI (1 sample out of 100).
 ```{r}
@@ -65,7 +65,7 @@ distr_func = rnorm, mean = 20, sd = 3)
 
 As we can see, 5 samples out of a 100 do not include the true mean within a 95% CI, while there is only 1 sample that does not include the mean within a 99% CI. Keep in mind that the results will be affected if the seed is changed.
 
-## Rerun the previous simulation with the same number of samples, but increase the sample size to 300. Visualize the confidence intervals.
+## Rerun the previous simulation with the same number of samples, but increase the sample size to 300. Visualize the confidence intervals
 
 We are going to rerun the previous simulation, with the only difference of increasing each sample's size to 300. In this new scenario, we still expect on average 5% of the samples to not include the true value of the mean when we consider a 95% CI (5 samples out of 100), while 1% of the samples should not include the true mean when considering a 99% CI (1 sample out of 100). One difference which we expect from the previous scenario is that the CIs should become narrower, because increasing the sample size reduces the standard error (sample size n is at the denominator of the formula for calculating standard error; the greater the n, the smaller the error), providing a smaller CI.
 ```{r}
@@ -79,4 +79,39 @@ distr_func = rnorm, mean = 20, sd = 3)
 Overall, the intervals are in fact narrower than in the first scenario we analyzed. Here, we only meet 2 samples that do not include the true mean within 95% CI, with no sample not including the true mean within 99% CI.
 
 # 3. Confidence Intervals and Uniform Distributions
+
+## Display confidence intervals as in the first two scenarios, but generate the data from a uniform distribution
+
+Now, we create new confidence intervals, using the same parameters as in the first two scenarios, with the exception of generating the data from a uniformly distributed population. We still expect 5% of the samples to not include the population mean in their 95% CI, and 1% of the samples to not include it in their 99% CI. However, the CIs for the uniform distribution will be wider than those for the normal distribution on average, because the uniform distribution usually presents a higher standard deviation, which increases the standard error (as standard deviation is at the numerator of the formula for standard error). Uniform distributions usually have a larger standard deviation because they bring the most conservative estimate of uncertainty (every outcome has the same likelihood of happening). Let's confirm it:
+```{r}
+# Setting seed
+set.seed(180)
+
+# First scenario (sample size = 100)
+par(mfrow = c(1, 2))
+plot_sample_ci(num_samples = 100, sample_size = 100, pop_size = 10000,
+distr_func = runif)
+title("Uniform distribution")
+plot_sample_ci(num_samples = 100, sample_size = 100, pop_size = 10000,
+distr_func = rnorm)
+title("Normal distribution")
+```
+
+```{r}
+# Setting seed
+set.seed(180)
+
+# Second scenario (sample size = 30)
+par(mfrow = c(1, 2))
+plot_sample_ci(num_samples = 100, sample_size = 300, pop_size = 10000,
+distr_func = runif)
+title("Uniform distribution")
+plot_sample_ci(num_samples = 100, sample_size = 300, pop_size = 10000,
+distr_func = rnorm)
+title("Normal distribution")
+```
+
+As we can see from the plots above (check x-axis values), it is indeed true that when generating samples from a uniform distribution, the confidence intervals will be wider than when we generate samples from a normal distribution.
+
+# Summary
 

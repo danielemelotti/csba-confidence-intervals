@@ -16,6 +16,5 @@ We use a synthetic dataset in this project.
 
 ## 3. Confidence Intervals and Uniform Distributions
 * Display confidence intervals as in the first two scenarios, but generate the data from a uniform distribution.
-* Compare results with first two scenarios.
 
 See the end of the markdown file for a summary. Feel free to knit the file and generate a report. Thank you!
