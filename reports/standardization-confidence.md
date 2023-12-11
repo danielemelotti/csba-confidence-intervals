@@ -3,9 +3,7 @@ Computational Statistics in Business Analytics - Confidence Intervals
 
 **Author:** Daniele Melotti<br> **Date:** Nov 2023
 
-*See the [related GitHub
-repository](https://github.com/danielemelotti/csba-confidence-intervals)
-for code, data and list of tasks*.
+*See README for project description and list of tasks*.
 
 # 1. Data Standardization and Exploration
 
