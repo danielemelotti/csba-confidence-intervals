@@ -6,6 +6,8 @@ output: github_document
 **Author:** Daniele Melotti<br>
 **Date:** Nov 2023
 
+_See the [related GitHub repository](https://github.com/danielemelotti/csba-confidence-intervals) for code, data and list of tasks_.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
